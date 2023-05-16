@@ -55,4 +55,11 @@ class BD
 
         return $st->fetchObject();
     }
+    public function atualizar($dados)
+    {
+        $conn = $this->conn();
+        $sql = "UPDATE usuario SET nome=?, email=?, telefone=?";
+        $st = $conn->prepare($sql);
+        $st->execute([$dados['nome'], $dados['email'], $dados['telefone']]);
+    }
 }
