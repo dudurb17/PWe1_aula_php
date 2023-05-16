@@ -17,9 +17,10 @@ if (!empty($_POST)) {
     } catch (Exception $e) {
         echo $e->getMessage();
     }
-    if (!empty($_GET['id'])) {
-        $data = $conn->buscar($_GET['id']);
-    }
+}
+if (!empty($_GET['id'])) {
+    $data = $conn->buscar($_GET['id']);
+    var_dump($data);
 }
 ?>
 <!DOCTYPE html>

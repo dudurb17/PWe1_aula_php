@@ -51,7 +51,7 @@ class BD
         $conn = $this->conn();
         $sql = "SELECT * FROM usuario WHERE id=?;";
         $st = $conn->prepare($sql);
-        $st->execute();
+        $st->execute([$id]);
 
         return $st->fetchObject();
     }
