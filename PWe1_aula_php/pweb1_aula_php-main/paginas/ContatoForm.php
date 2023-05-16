@@ -37,16 +37,16 @@ if (!empty($_GET['id'])) {
     <form action="ContatoForm.php" method="post">
         <h3>Formulário Contato</h3>
         <label for="">Nome</label>
-        <input type="text" name="nome" value="<?php echo $data->nome ?>"><br>
+        <input type="text" name="nome" value="<?php echo (!empty($data->nome) ? $data->nome : "") ?>"><br>
 
         <label for="">Email</label>
-        <input type="text" name="email" id=""><br>
+        <input type="text" name="email" value="<?php echo (!empty($data->email) ? $data->email : "") ?>"><br>
 
         <label for="">Telefone</label>
-        <input type="text" name="telefone" id=""><br>
+        <input type="text" name="telefone" value="<?php echo (!empty($data->telefone) ? $data->telefone : "") ?>"><br>
 
         <button type="submit"><?php echo empty($_GET['id']) ? "Cadastrar" : "Salvar" ?></button><br>
-        <a href="ContatoList.php">Voltar</a><br><br>
+        <a href=" ContatoList.php">Voltar</a><br><br>
     </form>
 </body>
 
