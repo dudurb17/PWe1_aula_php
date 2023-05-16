@@ -57,8 +57,9 @@ class BD
     }
     public function atualizar($dados)
     {
+        $id = $dados['id'];
         $conn = $this->conn();
-        $sql = "UPDATE usuario SET nome=?, email=?, telefone=?";
+        $sql = "UPDATE usuario SET nome=?, email=?, telefone=? WHERE id= $id";
         $st = $conn->prepare($sql);
         $st->execute([$dados['nome'], $dados['email'], $dados['telefone']]);
     }
