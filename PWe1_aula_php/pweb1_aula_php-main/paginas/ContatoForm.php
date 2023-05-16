@@ -12,7 +12,12 @@ if (!empty($_POST)) {
         if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
             throw new Exception(" Formato de e-mail inválido. ");
         }
-        $conn->inserir($_POST);
+        if (empty($_POST['id'])) {
+            $conn->inserir($_POST);
+        } else {
+            $conn->atualizar($_POST);
+        }
+
         header("location: ContatoList.php");
     } catch (Exception $e) {
         echo $e->getMessage();
