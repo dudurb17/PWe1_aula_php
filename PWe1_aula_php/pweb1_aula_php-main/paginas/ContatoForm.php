@@ -20,8 +20,8 @@ if (!empty($_POST)) {
 
         header("location: ContatoList.php");
     } catch (Exception $e) {
-        echo $e->getMessage();
-        header("location: ContatoList.php?error=" . $e->getMessage());
+        $id = $_POST['id'];
+        header("location: ContatoList.php?id=$id&error=" . $e->getMessage());
     }
 }
 if (!empty($_GET['id'])) {
