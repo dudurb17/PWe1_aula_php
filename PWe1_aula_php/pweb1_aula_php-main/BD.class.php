@@ -46,4 +46,13 @@ class BD
         $st = $conn->prepare($sql);
         $st->execute([$id]);
     }
+    public function buscar($id)
+    {
+        $conn = $this->conn();
+        $sql = "SELECT * FROM usuario WHERE id=?;";
+        $st = $conn->prepare($sql);
+        $st->execute();
+
+        return $st->fetchObject();
+    }
 }
