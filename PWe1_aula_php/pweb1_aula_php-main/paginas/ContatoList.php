@@ -34,7 +34,7 @@ if (!empty($_GET['id'])) {
             echo "<td>" . $item->nome . "</td>";
             echo "<td>" . $item->telefone . "</td>";
             echo "<td>" . $item->email . "</td>";
-            echo "<td><a href='ContatoList.php?id=$item->id'>Deletar</a></td>";
+            echo "<td><a href='ContatoList.php?id=$item->id' onclik='return confirm (\"Deseja excluir\")'>Deletar</a></td>";
             echo "<tr>";
         }
         ?>
