@@ -1,33 +1,37 @@
 <?php
- include '../BD.class.php';
- $conn = new BD();
+include '../BD.class.php';
+$conn = new BD();
 
- if(!empty($_POST)){
+if (!empty($_POST)) {
     try {
 
-        if (!preg_match("/^[a-zA-Z-' ]*$/", $_POST['nome'])) {  
+        if (!preg_match("/^[a-zA-Z-' ]*$/", $_POST['nome'])) {
             throw new Exception(" Somente letras e espaços em branco são permitidos. ");
         }
-        
+
         if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
             throw new Exception(" Formato de e-mail inválido. ");
         }
         $conn->inserir($_POST);
         header("location: ContatoList.php");
-
-    } catch (Exception $e){
+    } catch (Exception $e) {
         echo $e->getMessage();
     }
- }
+    if (!empty($_GET['id'])) {
+        $data = $conn->buscar($_GET['id']);
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <form action="ContatoForm.php" method="post">
         <h3>Formulário Contato</h3>
@@ -44,4 +48,5 @@
         <a href="ContatoList.php">Voltar</a><br><br>
     </form>
 </body>
+
 </html>
