@@ -21,6 +21,7 @@ if (!empty($_POST)) {
         header("location: ContatoList.php");
     } catch (Exception $e) {
         echo $e->getMessage();
+        header("location: ContatoList.php?error=" . $e->getMessage());
     }
 }
 if (!empty($_GET['id'])) {
@@ -41,6 +42,7 @@ if (!empty($_GET['id'])) {
 <body>
     <form action="ContatoForm.php" method="post">
         <h3>Formulário Contato</h3>
+        <?php echo (!empty($_GET["error"]) ? $_GET['error'] : "") ?>
         <input type="hidden" name="id" value="<?php echo (!empty($data->id) ? $data->id : "") ?>">
         <label for="">Nome</label>
         <input type="text" name="nome" value="<?php echo (!empty($data->nome) ? $data->nome : "") ?>"><br>
