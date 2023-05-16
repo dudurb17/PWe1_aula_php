@@ -14,24 +14,13 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-
--- Copiando estrutura do banco de dados para db_aula
-CREATE DATABASE IF NOT EXISTS `db_aula` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_bin */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `db_aula`;
-
--- Copiando estrutura para tabela db_aula.usuario
-CREATE TABLE IF NOT EXISTS `usuario` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `nome` varchar(100) COLLATE utf8mb4_bin NOT NULL,
-  `telefone` varchar(20) COLLATE utf8mb4_bin NOT NULL,
-  `email` varchar(100) COLLATE utf8mb4_bin NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
-
--- Copiando dados para a tabela db_aula.usuario: ~1 rows (aproximadamente)
+-- Copiando dados para a tabela db_aula.usuario: ~2 rows (aproximadamente)
 INSERT INTO `usuario` (`id`, `nome`, `telefone`, `email`) VALUES
-	(1, 'jackson', '84 9888888', 'lordjackson@gmail.com'),
-	(2, 'Maria', '49 888888', 'maria@gmail.com');
+	(10, 'eduardo', '49 991767992', 'eduardo.robettibedin@gamil.com'),
+	(15, 'aleluia', '49 991767992', 'eduardo.robettibedin@gamil.com'),
+	(16, 'fernando', '49 991767992', 'eduardo.robettibedin@gamil.com'),
+	(17, 'Crente', '49 991767992', 'eduardo.robettibedin@gamil.com');
+	
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
