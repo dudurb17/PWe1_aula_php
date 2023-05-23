@@ -9,11 +9,13 @@ if (!empty($_GET['id'])) {
     header("Location: ContatoList.php");
 }
 
-if (!empty($_POST)){
-    $conn->buscar($_POST);
-} else {
-    $load = $conn->select();
-}
+    if (!empty($_POST)){
+        $load = $conn->pesquisar($_POST);
+    }else{
+        $load = $conn->select();
+    
+    }
+     
 
 ?>
 
@@ -29,18 +31,23 @@ if (!empty($_POST)){
 
 <body>
     <form action="ContatoList.php" method="post">
-        <label for="">campo</label>
-        <input type="text" name="campo" id="">
+        <select name="campo">
+            <option value="nome">Nome</option>
+            <option value="telefone">Telefone</option>
+            <option value="email">Email</option>
+        </select>
+        <label>Valor</label>
+        <input type="text" name="valor">
         <button type="submit">Buscar</button>
-    </form>
-    <a href="ContatoForm.php">Cadastrar</a><br><br>
-    <table border="1">
-        <tr>
-            <th>Nome</th>
-            <th>Telefone</th>
-            <th>Email</th>
-        </tr>
-        <?php
+
+        <a href="ContatoForm.php">Cadastrar</a><br><br>
+        <table border="1">
+            <tr>
+                <th>Nome</th>
+                <th>Telefone</th>
+                <th>Email</th>
+            </tr>
+            <?php
         foreach ($load as $item) {
             echo "<tr>";
             echo "<td>" . $item->nome . "</td>";
@@ -51,7 +58,8 @@ if (!empty($_POST)){
             echo "<tr>";
         }
         ?>
-    </table>
+        </table>
+    </form>
 
 
 </body>

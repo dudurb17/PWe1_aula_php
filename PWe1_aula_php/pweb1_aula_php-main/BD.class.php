@@ -64,13 +64,15 @@ class BD
         $st->execute([$dados['nome'], $dados['email'], $dados['telefone']]);
     }
     public function pesquisar($dados){
-        $campo=$dados["nome"];
+        $campo=$dados["campo"];
+        $valor =$dados["valor"];
+
         $conn = $this->conn();
-        $sql = "SELECT * FROM usuario WHERE nome Like ?;";
+        $sql = "SELECT * FROM usuario WHERE $campo Like ?;";
         $st = $conn->prepare($sql);
 
         //pesquisa o campo com % para usar o like do SQL
-        $st->execute(["%".$campo."%"]);
+        $st->execute(["%".$valor."%"]);
 
         //retorna um vetor de objetos do tipo classse
         return $st->fetchAll(PDO:: FETCH_CLASS);
