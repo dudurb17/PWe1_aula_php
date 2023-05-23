@@ -2,6 +2,15 @@
 
 if(!empty($_POST)){
     session_start();
+    $_SESSION["login"]=$_POST["login"];
+    $_SESSION["senha"]=$_POST["senha"];
+    if($_SESSION["login"]=="admin" && $_SESSION["senha"]=="123"){
+        header("Location:main.php");
+    }
+    else{
+        header("location:login.php?msg=Erro");
+    }
+
 
 }elseif(!empty($_GET['sair'])){
     
@@ -22,8 +31,10 @@ if(!empty($_POST)){
     <form action="login.php" method="post">
         <label for="">Login</label>
         <input type="text" name="login" id="" />
+        </br>
         <label for="">Senha</label>
         <input type="password" name="senha" id="" />
+        </br>
         <button type="submit">Logar</button>
 
     </form>
