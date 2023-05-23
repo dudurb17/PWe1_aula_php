@@ -25,14 +25,15 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `nome` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `telefone` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `email` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  `login` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL,
+  `senha` varchar(250) COLLATE utf8mb4_bin DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
--- Copiando dados para a tabela db_aula.usuario: ~1 rows (aproximadamente)
-INSERT INTO `usuario` (`id`, `nome`, `telefone`, `email`) VALUES
-	(5, 'teste', 'rteste', 'teste@teste.com'),
-	(6, 'teste', 'rteste', 'teste@teste.com'),
-	(7, 'jackson', '84888888', 'jackson@teste.com');
+-- Copiando dados para a tabela db_aula.usuario: ~2 rows (aproximadamente)
+INSERT INTO `usuario` (`id`, `nome`, `telefone`, `email`, `login`, `senha`) VALUES
+	(5, 'teste', 'rteste', 'teste@teste.com', 'admin', '123'),
+	(7, 'jackson', '84888888', 'jackson@teste.com', NULL, NULL);
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
