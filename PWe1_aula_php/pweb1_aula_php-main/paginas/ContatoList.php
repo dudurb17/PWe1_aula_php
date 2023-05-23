@@ -30,6 +30,7 @@ if (!empty($_GET['id'])) {
 </head>
 
 <body>
+    <h1>Listar contato</h1>
     <form action="ContatoList.php" method="post">
         <select name="campo">
             <option value="nome">Nome</option>
