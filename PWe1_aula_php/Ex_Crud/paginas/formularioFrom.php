@@ -31,7 +31,7 @@
 
 <body>
     <main>
-        <h1>Cadastro simples</h1>
+        <?php echo "<h1>".(!empty($data->id)? 'Atualizar Dados':'Cadastrar')."</h1>"  ?>
         <form action="formularioFrom.php" method="post">
             <input type="hidden" name="id" value="<?php echo (!empty($data->id) ? $data->id : "") ?>">
             <label for="">Informe seu nome:</label>
@@ -41,7 +41,7 @@
             <label for="">Informe sua idade</label>
             <input type="number" name="idade" id="" value="<?php echo (!empty($data->idade) ? $data->idade : "") ?>"
                 required>
-            <input type="submit" value="usuario" name="submit" />
+            <input type="submit" value="<?php echo (!empty($data->id)? 'atualizar':'cadastrar') ?>" name="submit" />
 
         </form>
     </main>
