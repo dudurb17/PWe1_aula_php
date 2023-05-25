@@ -1,8 +1,7 @@
 <?php 
-include "../BD.class.php";
-
-$conn = new BD();
-$load = $conn->select();
+     include "../DB_class.php";
+    $conn= new BD();
+    $load = $conn->select();
 
 
 ?>
@@ -32,12 +31,19 @@ $load = $conn->select();
                 </tr>
             </thead>
             <tbody class="table-group-divider">
-                <tr>
-                    <th></th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                </tr>
+
+                <?php
+            foreach ($load as $item) {
+                echo "<tr>";
+                echo "<td>".$item->id."</td>";
+                echo "<td>" . $item->name . "</td>";
+                echo "<td>" . $item->cpf . "</td>";
+                echo "<td>" . $item->idade . "</td>";
+                echo "<td><a href='ContatoForm.php?id=$item->id'>editar</a> <a href='ContatoList.php?id=$item->id' onclick='return confirm(\"Deseja excluir\")'>Deletar</a></td>";
+                echo "<tr>";
+            }
+            ?>
+
         </table>
     </div>
 
