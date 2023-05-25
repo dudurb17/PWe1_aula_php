@@ -28,11 +28,16 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Copiando dados para a tabela db_ex.usuario: ~6 rows (aproximadamente)
+-- Copiando dados para a tabela db_ex.usuario: ~8 rows (aproximadamente)
 INSERT INTO `usuario` (`id`, `name`, `cpf`, `idade`) VALUES
 	(3, 'Eduardo ', '1234534', 17),
 	(5, 'joao', '1234434', 34),
-	(7, 'Eduar', '213434', 123);
+	(7, 'Eduar', '213434', 123),
+	(9, 'Weber', '345345', 98),
+	(10, 'carlos', '12342434', 10),
+	(11, 'joao', '343', 65),
+	(12, 'Eduardo', '124324', 43),
+	(13, 'Eduar', '3434', 565);
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
