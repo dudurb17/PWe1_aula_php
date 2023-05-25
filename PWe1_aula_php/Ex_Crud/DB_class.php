@@ -22,8 +22,7 @@
 
         public function inserir($dados){
             $conn = $this->conn();
-            $tabela=$dados['submit'];
-            $sql = "INSERT INTO $tabela (name, cpf, idade) VALUES (?, ?, ?);";
+            $sql = "INSERT INTO usuario (name, cpf, idade) VALUES (?, ?, ?);";
             $st = $conn->prepare($sql);
             $st->execute([$dados['name'], $dados['cpf'], $dados['idade'],]);
             
@@ -39,5 +38,29 @@
     
             return $st->fetchAll(PDO::FETCH_CLASS);
         }
+        public function deletar($id)
+    {
+        $conn = $this->conn();
+        $sql = "DELETE FROM usuario where id=? ";
+        $st = $conn->prepare($sql);
+        $st->execute([$id]);
+    }
+    public function buscar($id)
+    {
+        $conn = $this->conn();
+        $sql = "SELECT * FROM usuario WHERE id=?;";
+        $st = $conn->prepare($sql);
+        $st->execute([$id]);
+
+        return $st->fetchObject();
+    }
+    public function atualizar($dados)
+    {
+        $id = $dados['id'];
+        $conn = $this->conn();
+        $sql = "UPDATE usuario SET name=?, cpf=?, idade=? WHERE id= $id";
+        $st = $conn->prepare($sql);
+        $st->execute([$dados['name'], $dados['cpf'], $dados['idade']]);
+    }
     }
 ?>

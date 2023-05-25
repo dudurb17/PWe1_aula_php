@@ -1,11 +1,19 @@
 <?php 
  include "../DB_class.php";
  $conn= new BD();
- if(isset($_POST['submit'])){
-        $conn->inserir($_POST);
-    
+ if (!empty($_POST)) {
+ if (empty($_POST['id'])) {
+    $conn->inserir($_POST);
+} else {
+    $conn->atualizar($_POST);
+}
+  header("Location:formularioList.php");
+
  }
- header('Location:formularioList.php');
+ if (!empty($_GET['id'])) {
+    $data = $conn->buscar($_GET['id']);
+}
+ 
  
  
  
@@ -25,12 +33,14 @@
     <main>
         <h1>Cadastro simples</h1>
         <form action="formularioFrom.php" method="post">
+            <input type="hidden" name="id" value="<?php echo (!empty($data->id) ? $data->id : "") ?>">
             <label for="">Informe seu nome:</label>
-            <input type="text" name="name" required>
+            <input type="text" name="name" value="<?php echo (!empty($data->name) ? $data->name : "") ?>" required>
             <label for="">informe seu cpf:</label>
-            <input type="text" name="cpf" id="" required />
+            <input type="text" name="cpf" id="" required value="<?php echo (!empty($data->cpf) ? $data->cpf : "") ?>" />
             <label for="">Informe sua idade</label>
-            <input type="number" name="idade" id="" required>
+            <input type="number" name="idade" id="" value="<?php echo (!empty($data->idade) ? $data->idade : "") ?>"
+                required>
             <input type="submit" value="usuario" name="submit" />
 
         </form>
