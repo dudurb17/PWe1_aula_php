@@ -30,11 +30,26 @@ class BD
         $st->execute([$dados['nome'], $dados['email'], $dados['telefone'], $dados['login'], $dados['senha']]);
     }
 
-    public function atualizar($dados)
+    public function atualizar($nome_tabela, $dados)
     {
         $id = $dados['id'];
         $conn = $this->conn();
-        $sql = "UPDATE usuario SET nome=?, email=?, telefone=? WHERE id = $id ";
+        $sql = "UPDATE $nome_tabela SET ";
+        $flag=0;
+        $arrayDados=[];
+        foreach($dados as $campo=> $valor){
+            if($flag==0)
+            {
+                $sql.="$campo=?";
+            }else{  
+                $sql.=",$campo=?";
+            }
+            $flag=1;
+            $arrayDados[]=$valor; 
+           
+        }
+        " nome=?, email=?, telefone=? 
+        WHERE id = $id ";
         $st = $conn->prepare($sql);
         $st->execute([$dados['nome'], $dados['email'], $dados['telefone']]);
     }
@@ -59,15 +74,15 @@ class BD
         return $st->fetchObject();
     }
 
-    public function deletar($id)
+    public function deletar($nome_tabela,$id)
     {
         $conn = $this->conn();
-        $sql = "DELETE FROM usuario WHERE id = ?";
+        $sql = "DELETE FROM $nome_tabela WHERE id = ?";
         $st = $conn->prepare($sql);
         $st->execute([$id]);
     }
 
-    public function pesquisar($dados)
+    public function pesquisar($nome_tabela,$dados)
     {
 
         //var_dump($dados);
@@ -76,7 +91,7 @@ class BD
         $valor = $dados['valor'];
 
         $conn = $this->conn();
-        $sql = "SELECT * FROM usuario WHERE $campo LIKE ?;";
+        $sql = "SELECT * FROM $nome_tabela WHERE $campo LIKE ?;";
         $st = $conn->prepare($sql);
         //pesquisa o campo com % para usar o like do SQL 
         $st->execute(["%" . $valor . "%"]);
