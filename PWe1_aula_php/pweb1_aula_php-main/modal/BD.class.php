@@ -22,12 +22,25 @@ class BD
         );
     }
 
-    public function inserir($dados)
+    public function inserir($nome_tabela,$dados)
     {
         $conn = $this->conn();
-        $sql = "INSERT INTO usuario (nome, email, telefone, login, senha) VALUES (?, ?, ?, ?, ?);";
+        $sql = "INSERT INTO $nome_tabela (";
+        $flag=0;
+        $arrayDados=[];
+        foreach($dados as $campo =>$valor){
+            $sql.= $flag==0? "$campo=?":",$campo=?";
+            $flag=1;
+        }
+        $sql.=") VALUES (";
+        foreach($dados as $campo=>$valor ){
+            $sql.=$flag==0 ? "?": ",?";
+            $flag==1;
+            $arrayDados[]=$valor;
+        }
+        $sql.=");";
         $st = $conn->prepare($sql);
-        $st->execute([$dados['nome'], $dados['email'], $dados['telefone'], $dados['login'], $dados['senha']]);
+        $st->execute($arrayDados);
     }
 
     public function atualizar($nome_tabela, $dados)
