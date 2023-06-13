@@ -2,25 +2,24 @@
 include "../BD.class.php";
 
 $conn = new BD();
+session_start();
+if (!empty($_POST)) {
+    try {
+        $usuario = $conn->login($_POST);
 
-if(!empty($_POST)){
-    session_start();
-    
+        if ($usuario) {
+            $_SESSION["login"] = $_POST['login'];
 
-    $usuario=$conn->login($_POST);
-
-    
-    if($_POST["login"]==$usuario->login && $_POST["senha"]==$usuario->senha){
-        $_SESSION["login"]=$_POST["login"];
-        $_SESSION["senha"]=$_POST["senha"];
-        header("Location:main.php");
+            $url = "main.php";
+        }
+    } catch (Exception $e) {
+        $login = $_POST['login'];
+        $msg = "O login ou senha esta errado.Por favor, tente novamente.";
+        $url = "login.php?login=$login&erro=" .  $msg;
     }
-    else{
-        header("location:login.php?msg=Erro");
-    }
+    header("location: $url");
+} elseif (!empty($_GET['sair'])) {
 
-
-}elseif(!empty($_GET['sair'])){
     
 }?>
 

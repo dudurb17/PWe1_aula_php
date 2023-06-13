@@ -82,11 +82,17 @@ class BD
     public function login($dados)
     {
         $conn = $this->conn();
-        $sql = "SELECT * FROM usuario WHERE login=? AND senha=?;";
+        $sql = "SELECT * FROM usuario WHERE login=? ;";
         $st = $conn->prepare($sql);
-        $st->execute([$dados['login'], $dados['senha']]);
+        $st->execute([$dados['login']]);
 
+        $result = $st->fetchObject();
 
-        return $st->fetchObject();
+        if (password_verify($dados['senha'], $result->senha)) {
+            return $result;
+        } 
+        else {
+            return throw new Exception("error");
+        }
     }
 }
